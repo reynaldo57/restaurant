@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant/pages/customer/category_list_product_page.dart';
 import 'package:restaurant/pages/customer/product_detail_page.dart';
+import 'package:restaurant/widgets/text_normal_widget.dart';
 
 class HomeCustomerPage extends StatelessWidget {
   @override
@@ -27,22 +28,8 @@ class HomeCustomerPage extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            "Ceviche Chorrillos",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 30.0,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: "Source Sans Pro Black"),
-                          ),
-                          Text(
-                            "El mejor Pescado",
-                            style: TextStyle(
-                              color: Colors.white60,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.normal,
-                            ),
-                          ),
+                          H1(text: "Ceviche Chorrillos"),
+                          H2(text: "El mejor Pescado")
                         ],
                       ),
                       Expanded(
