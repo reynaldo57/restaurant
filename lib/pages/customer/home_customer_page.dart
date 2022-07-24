@@ -56,16 +56,33 @@ class HomeCustomerPage extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
-                        CategoryFilterWidget(),
-                        CategoryFilterWidget(),
-                        CategoryFilterWidget(),
-                        CategoryFilterWidget(),
+                        CategoryFilterWidget(
+                          text: "Todos",
+                          primary: true,
+                        ),
+                        CategoryFilterWidget(
+                          text: "Postres",
+                          primary: false,
+                        ),
+                        CategoryFilterWidget(
+                          text: "Bebidas",
+                          primary: false,
+                        ),
+                        CategoryFilterWidget(
+                          text: "Platos de Fondo",
+                          primary: false,
+                        ),
+                        CategoryFilterWidget(
+                          text: "Entradas",
+                          primary: false,
+                        ),
+
                       ],
                     ),
                   ),
                 ),
                 SizedBox(
-                  height: 10.0,
+                  height: 20.0,
                 ),
 
                 //Promotions

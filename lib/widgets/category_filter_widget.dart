@@ -6,19 +6,27 @@ import 'package:restaurant/widgets/text_normal_widget.dart';
 
 class CategoryFilterWidget extends StatelessWidget {
 
+  bool primary;
+  String text;
+
+  CategoryFilterWidget({required this.primary, required this.text});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 4.0),
       child: FilterChip(
-        backgroundColor: BRAND_PRIMARY,
+        backgroundColor: primary ? BRAND_PRIMARY : BRAND_SECUNDARY,
+        elevation: 0,
+        shadowColor: Colors.transparent,
+        side: BorderSide(width: 1, color: Colors.white),
+        shape: StadiumBorder(side: BorderSide(style: BorderStyle.none)),
         label: Container(
           height: 26.0,
-          width: 50.0,
           child: Center(
             child: TextNormalPrimary(
-              text: "Todos",
+              text: this.text,
+              colorText: !primary ? COLOR_FONT_PRIMARY : Colors.black87,
             ),
           ),
         ),

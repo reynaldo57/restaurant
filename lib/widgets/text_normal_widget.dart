@@ -72,13 +72,14 @@ class H2 extends StatelessWidget {
 class TextNormalPrimary extends StatelessWidget {
 
   final String? text;
-  TextNormalPrimary({required this.text});
+  final Color? colorText;
+  TextNormalPrimary({required this.text, this.colorText});
 
   @override
   Widget build(BuildContext context) {
     return OurText(
       text: this.text,
-      colorText: COLOR_FONT_SECUNDARY,
+      colorText: colorText,
       fontSize: TITLE_SIZE,
       fontFamily: 'Source Sans Pro Bold',
     );
