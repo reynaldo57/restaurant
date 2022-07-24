@@ -6,6 +6,22 @@ import 'package:flutter/material.dart';
 
 class ItemCarouselWidget extends StatelessWidget {
 
+  String image;
+  String title;
+  String subtitle;
+  String price;
+  String rate;
+
+  ItemCarouselWidget({
+    required this.image,
+    required this.title,
+    required this.subtitle,
+    required this.price,
+    required this.rate,
+});
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +54,8 @@ class ItemCarouselWidget extends StatelessWidget {
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: NetworkImage(
-                      "https://www.parrillascuadra20.com/wp-content/uploads/2021/08/parrilla-mixta.jpg"),
+                    this.image,
+                  ),
                 ),
               ),
               child: Stack(
@@ -70,7 +87,9 @@ class ItemCarouselWidget extends StatelessWidget {
               height: 10,
             ),
             Text(
-              "Costillar de Cordero",
+              this.title,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
               style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
@@ -80,7 +99,7 @@ class ItemCarouselWidget extends StatelessWidget {
               height: 4,
             ),
             Text(
-              "Costillar de Cordero con Papas Nativas, Costillar de Cordero con Papas Nativas",
+              this.subtitle,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
@@ -95,14 +114,15 @@ class ItemCarouselWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("S/ 30.00",
+                Text(
+                    "S/${this.price}",
                     style: TextStyle(
                         color: Colors.white54,
                         fontWeight: FontWeight.bold)),
                 Container(
                   child: Row(
                     children: [
-                      Text("4.6",
+                      Text(this.rate,
                           style: TextStyle(
                               color: Colors.white54,
                               fontWeight: FontWeight.bold)),
