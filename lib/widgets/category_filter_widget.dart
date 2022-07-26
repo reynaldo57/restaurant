@@ -1,15 +1,14 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:restaurant/common/colors.dart';
 import 'package:restaurant/widgets/text_normal_widget.dart';
 
 class CategoryFilterWidget extends StatelessWidget {
-
   bool primary;
   String text;
+  Widget goTo;
 
-  CategoryFilterWidget({required this.primary, required this.text});
+  CategoryFilterWidget(
+      {required this.primary, required this.text, required this.goTo});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +30,10 @@ class CategoryFilterWidget extends StatelessWidget {
           ),
         ),
         onSelected: (bool selected) {
-
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => this.goTo),
+          );
         },
       ),
     );
