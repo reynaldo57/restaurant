@@ -26,7 +26,14 @@ class CategoryListProductPage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              ItemSearchWidget(),
+              ItemSearchWidget(
+                  image: "https://comidasperuanas.net/wp-content/uploads/2020/12/Torta-Dona-Pepa.jpg",
+                  title: "Torta de Chocolate",
+                  subtitle: "Torata de Chocolate y nueces con muchas Almendras",
+                  time: "4.5",
+                  rate: "12.00",
+                  price: "2.00"
+              ),
             ],
           ),
         ),

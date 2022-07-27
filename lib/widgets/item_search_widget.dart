@@ -1,12 +1,25 @@
 
 
-
-
-
 import 'package:flutter/material.dart';
 
 class ItemSearchWidget extends StatelessWidget {
-  const ItemSearchWidget({Key? key}) : super(key: key);
+
+  String image;
+  String title;
+  String subtitle;
+  String time;
+  String rate;
+  String price;
+
+  ItemSearchWidget({
+    required this.image,
+    required this.title,
+    required this.subtitle,
+    required this.time,
+    required this.rate,
+    required this.price,
+
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +35,7 @@ class ItemSearchWidget extends StatelessWidget {
                 image: DecorationImage(
                     fit: BoxFit.cover,
                     image: NetworkImage(
-                        "https://comidasperuanas.net/wp-content/uploads/2020/12/Torta-Dona-Pepa.jpg"))),
+                        this.image))),
           ),
           SizedBox(
             width: 8.0,
@@ -32,7 +45,9 @@ class ItemSearchWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Torta de Chocolate",
+                    this.title,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -42,7 +57,7 @@ class ItemSearchWidget extends StatelessWidget {
                     height: 4.0,
                   ),
                   Text(
-                    "Torta de Chocolate y nueces con manjar acompañado de frutas de estacion",
+                    this.subtitle,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
@@ -61,7 +76,7 @@ class ItemSearchWidget extends StatelessWidget {
                         size: 16.0,
                       ),
                       Text(
-                        "4.5",
+                        this.rate,
                         style: TextStyle(
                             color: Colors.white60,
                             fontWeight: FontWeight.normal,
@@ -79,7 +94,7 @@ class ItemSearchWidget extends StatelessWidget {
                         width: 2.0,
                       ),
                       Text(
-                        "2min",
+                        "$time min",
                         style: TextStyle(
                             color: Colors.white60,
                             fontWeight: FontWeight.normal,
@@ -90,7 +105,7 @@ class ItemSearchWidget extends StatelessWidget {
                 ],
               )),
           Text(
-            "S/ 10.00",
+            "S/ ${this.price}",
             style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
