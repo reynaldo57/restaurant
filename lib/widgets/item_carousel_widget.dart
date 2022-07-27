@@ -12,6 +12,7 @@ class ItemCarouselWidget extends StatelessWidget {
   String price;
   String rate;
   String? discount;
+  Widget goTo;
 
   ItemCarouselWidget({
     required this.image,
@@ -20,6 +21,7 @@ class ItemCarouselWidget extends StatelessWidget {
     required this.price,
     required this.rate,
     this.discount,
+    required this.goTo,
 });
 
 
@@ -29,7 +31,7 @@ class ItemCarouselWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>this.goTo));
       },
       child: Container(
         margin: EdgeInsets.only(left: 10.0, right: 14.0),

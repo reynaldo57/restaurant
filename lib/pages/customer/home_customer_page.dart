@@ -104,6 +104,7 @@ class HomeCustomerPage extends StatelessWidget {
                         price: "50.00",
                         rate: "4.6",
                         discount: "50.0",
+                        goTo: ProductDetailPage(),
                       ),
                       ItemCarouselWidget(
                         image: "https://www.el10.pe/wp-content/uploads/2020/10/parrilla-casa.jpg",
@@ -111,6 +112,7 @@ class HomeCustomerPage extends StatelessWidget {
                         subtitle: "Costillar de cordero con especias y mucha papa frita",
                         price: "50.00",
                         rate: "4.6",
+                        goTo: ProductDetailPage(),
                       ),
                       ItemCarouselWidget(
                         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX9g1Mdod7v9Uq2FPvd47wEU0hzKXbtjbHrQ&usqp=CAU",
@@ -119,6 +121,7 @@ class HomeCustomerPage extends StatelessWidget {
                         price: "50.00",
                         rate: "4.6",
                         discount: "50.0",
+                        goTo: ProductDetailPage(),
                       ),
                       ItemCarouselWidget(
                         image: "https://www.el10.pe/wp-content/uploads/2020/10/parrilla-casa.jpg",
@@ -126,6 +129,7 @@ class HomeCustomerPage extends StatelessWidget {
                         subtitle: "Costillar de cordero con especias y mucha papa frita",
                         price: "50.00",
                         rate: "4.6",
+                        goTo: ProductDetailPage(),
                       ),
                     ],
                   ),
@@ -161,29 +165,10 @@ class HomeCustomerPage extends StatelessWidget {
                         price: "50.00",
                         rate: "4.6",
                         discount: "50.0",
+                        goTo: ProductDetailPage(),
+
                       ),
-                      ItemCarouselWidget(
-                        image: "https://www.el10.pe/wp-content/uploads/2020/10/parrilla-casa.jpg",
-                        title: "Costilar de cordero",
-                        subtitle: "Costillar de cordero con especias y mucha papa frita",
-                        price: "50.00",
-                        rate: "4.6",
-                      ),
-                      ItemCarouselWidget(
-                        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX9g1Mdod7v9Uq2FPvd47wEU0hzKXbtjbHrQ&usqp=CAU",
-                        title: "Costilar de cordero",
-                        subtitle: "Costillar de cordero con especias y mucha papa frita",
-                        price: "50.00",
-                        rate: "4.6",
-                        discount: "50.0",
-                      ),
-                      ItemCarouselWidget(
-                        image: "https://www.el10.pe/wp-content/uploads/2020/10/parrilla-casa.jpg",
-                        title: "Costilar de cordero",
-                        subtitle: "Costillar de cordero con especias y mucha papa frita",
-                        price: "50.00",
-                        rate: "4.6",
-                      ),
+
 
                     ],
                   ),
@@ -220,29 +205,9 @@ class HomeCustomerPage extends StatelessWidget {
                         price: "50.00",
                         rate: "4.6",
                         discount: "50.0",
+                        goTo: ProductDetailPage(),
                       ),
-                      ItemCarouselWidget(
-                        image: "https://www.el10.pe/wp-content/uploads/2020/10/parrilla-casa.jpg",
-                        title: "Costilar de cordero",
-                        subtitle: "Costillar de cordero con especias y mucha papa frita",
-                        price: "50.00",
-                        rate: "4.6",
-                      ),
-                      ItemCarouselWidget(
-                        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX9g1Mdod7v9Uq2FPvd47wEU0hzKXbtjbHrQ&usqp=CAU",
-                        title: "Costilar de cordero",
-                        subtitle: "Costillar de cordero con especias y mucha papa frita",
-                        price: "50.00",
-                        rate: "4.6",
-                        discount: "50.0",
-                      ),
-                      ItemCarouselWidget(
-                        image: "https://www.el10.pe/wp-content/uploads/2020/10/parrilla-casa.jpg",
-                        title: "Costilar de cordero",
-                        subtitle: "Costillar de cordero con especias y mucha papa frita",
-                        price: "50.00",
-                        rate: "4.6",
-                      ),
+
                     ],
                   ),
                 ),
