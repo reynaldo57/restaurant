@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:restaurant/common/colors.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProductDetailPage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xff1B1A21),
       appBar: AppBar(
         title: Text(
-            "Detalle del Producto",
+          "Detalle del Producto",
           style: TextStyle(
             fontWeight: FontWeight.bold,
           ),
@@ -17,44 +18,52 @@ class ProductDetailPage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async{
+          // await launch("https://api.whatsapp-com/send?phone=990641247&text=How%20are%20you%20?");
+        },
+        backgroundColor: Color(0xff45EF61),
+        child: SvgPicture.asset(
+          "assets/images/bxl-whatsapp.svg",
+          color: Colors.white,
+          height: 40.0,
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container (
+            Container(
               height: 340,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage("https://comidasvenezolanas.org/wp-content/uploads/2021/02/parrilla-venezolana_700x466.jpg")
-                ),
+                    fit: BoxFit.cover,
+                    image: NetworkImage(
+                        "https://comidasvenezolanas.org/wp-content/uploads/2021/02/parrilla-venezolana_700x466.jpg")),
               ),
               child: Stack(
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          Color(0xff1B1A21),
-                          Colors.transparent
-                        ],
-                        begin: Alignment.bottomCenter,
-                        end: Alignment(0, 0),
-                      )
-                    ),
+                        gradient: LinearGradient(
+                      colors: [Color(0xff1B1A21), Colors.transparent],
+                      begin: Alignment.bottomCenter,
+                      end: Alignment(0, 0),
+                    )),
                   ),
                   Container(
-                    margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
+                    margin:
+                        EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          padding: EdgeInsets.symmetric(horizontal: 6, vertical: 3.0),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 6, vertical: 3.0),
                           decoration: BoxDecoration(
-                            color: BRAND_PRIMARY,
-                            borderRadius: BorderRadius.circular(30.0)
-                          ),
+                              color: BRAND_PRIMARY,
+                              borderRadius: BorderRadius.circular(30.0)),
                           child: Text(
                             "Platos de Fondo",
                             style: TextStyle(
@@ -67,48 +76,59 @@ class ProductDetailPage extends StatelessWidget {
                         Text(
                           "Costillar de Cordero",
                           style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 24.0,
-                            fontWeight: FontWeight.bold
-                          ),
+                              color: Colors.white,
+                              fontSize: 24.0,
+                              fontWeight: FontWeight.bold),
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("S./ 50.00",
-                                style: TextStyle(
-                                    color: Colors.white70,
+                            Text(
+                              "S./ 50.00",
+                              style: TextStyle(
+                                  color: Colors.white70,
                                   fontSize: 18.0,
-                                  fontWeight: FontWeight.bold
-                                ),
+                                  fontWeight: FontWeight.bold),
                             ),
                             Container(
                               child: Row(
                                 children: [
-                                  Icon(Icons.timer, size: 16, color: Colors.white70,),
-                                  SizedBox(width: 3.0,),
-                                  Text("10min",
-                                    style: TextStyle(
-                                        color: Colors.white70,
-                                        fontSize: 16.0,
-                                        fontWeight: FontWeight.bold
-                                    ),
+                                  Icon(
+                                    Icons.timer,
+                                    size: 16,
+                                    color: Colors.white70,
                                   ),
-                                  SizedBox(width: 10.0,),
-                                  Icon(Icons.star, size: 16, color: BRAND_PRIMARY,),
-                                  SizedBox(width: 3.0,),
-                                  Text("4.5",
+                                  SizedBox(
+                                    width: 3.0,
+                                  ),
+                                  Text(
+                                    "10min",
                                     style: TextStyle(
                                         color: Colors.white70,
                                         fontSize: 16.0,
-                                        fontWeight: FontWeight.bold
-                                    ),
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    width: 10.0,
+                                  ),
+                                  Icon(
+                                    Icons.star,
+                                    size: 16,
+                                    color: BRAND_PRIMARY,
+                                  ),
+                                  SizedBox(
+                                    width: 3.0,
+                                  ),
+                                  Text(
+                                    "4.5",
+                                    style: TextStyle(
+                                        color: Colors.white70,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ],
                               ),
                             )
-
-
                           ],
                         )
                       ],
@@ -127,9 +147,9 @@ class ProductDetailPage extends StatelessWidget {
                   Text(
                     "Descripcion General",
                     style: TextStyle(
-                        color: Colors.white70,
-                        fontSize: 16.0,
-                        ),
+                      color: Colors.white70,
+                      fontSize: 16.0,
+                    ),
                   )
                 ],
               ),
@@ -146,9 +166,9 @@ class ProductDetailPage extends StatelessWidget {
                       "Costillar de cordero de la maxima calidad"
                       "acompañado de las mejores especies y guardiciones",
                       style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14.0,
-                          ),
+                        color: Colors.white,
+                        fontSize: 14.0,
+                      ),
                     ),
                   )
                 ],
@@ -164,9 +184,9 @@ class ProductDetailPage extends StatelessWidget {
                   Text(
                     "Ingredientes Principales",
                     style: TextStyle(
-                        color: Colors.white70,
-                        fontSize: 16.0,
-                        ),
+                      color: Colors.white70,
+                      fontSize: 16.0,
+                    ),
                   )
                 ],
               ),
@@ -180,7 +200,7 @@ class ProductDetailPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                  "- Carne de Cordero Premium",
+                    "- Carne de Cordero Premium",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 14.0,
@@ -207,8 +227,6 @@ class ProductDetailPage extends StatelessWidget {
                       fontSize: 14.0,
                     ),
                   ),
-
-
                 ],
               ),
             ),
