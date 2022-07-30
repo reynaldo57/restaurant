@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant/pages/customer/category_list_product_page.dart';
 import 'package:restaurant/pages/customer/product_detail_page.dart';
+import 'package:restaurant/services/firestore_service.dart';
 import 'package:restaurant/widgets/category_filter_widget.dart';
 import 'package:restaurant/widgets/item_carousel_widget.dart';
 import 'package:restaurant/widgets/text_normal_widget.dart';
@@ -38,7 +39,10 @@ class HomeCustomerPage extends StatelessWidget {
                         child: Container(),
                       ),
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          FirestoreService _firestoreService = new FirestoreService();
+                          _firestoreService.getCategories();
+                        },
                         icon: Icon(
                           Icons.search,
                           color: Colors.white,
