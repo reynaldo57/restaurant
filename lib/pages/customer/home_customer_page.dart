@@ -7,7 +7,6 @@ import 'package:restaurant/widgets/item_carousel_widget.dart';
 import 'package:restaurant/widgets/text_normal_widget.dart';
 
 class HomeCustomerPage extends StatelessWidget {
-
   FirestoreService _firestoreService = new FirestoreService();
 
   @override
@@ -43,7 +42,8 @@ class HomeCustomerPage extends StatelessWidget {
                       ),
                       IconButton(
                         onPressed: () {
-                          FirestoreService _firestoreService = new FirestoreService();
+                          FirestoreService _firestoreService =
+                              new FirestoreService();
                           _firestoreService.getCategories();
                         },
                         icon: Icon(
@@ -60,35 +60,47 @@ class HomeCustomerPage extends StatelessWidget {
                 //categories
                 FutureBuilder(
                   future: _firestoreService.getCategories(),
-                  builder: (BuildContext, AsyncSnapshot snap){
-                    if(snap.hasData){
+                  builder: (BuildContext, AsyncSnapshot snap) {
+                    if (snap.hasData) {
                       List<Map<String, dynamic>> categories = snap.data;
                       return Container(
                         margin: EdgeInsets.symmetric(horizontal: 10.0),
                         child: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: [
-                              CategoryFilterWidget(
-                                text: "Todos",
-                                primary: true,
-                                goTo: CategoryListProductPage(),
-                              ),
-                              CategoryFilterWidget(
-                                text: "Postres",
-                                primary: false,
-                                goTo: CategoryListProductPage(),
-                              ),
-
-
-                            ],
-                          ),
-                        ),
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: categories
+                                  .map<Widget>(
+                                    (e) => CategoryFilterWidget(
+                                  primary: false,
+                                  text: e["description"],
+                                  goTo: CategoryListProductPage(),
+                                ),
+                              )
+                                  .toList(),
+                            ),
+                            // child: Row(
+                            //   children: [
+                            //     CategoryFilterWidget(
+                            //       text: "Todos",
+                            //       primary: true,
+                            //       goTo: CategoryListProductPage(),
+                            //     ),
+                            //     CategoryFilterWidget(
+                            //       text: "Postres",
+                            //       primary: false,
+                            //       goTo: CategoryListProductPage(),
+                            //     ),
+                            //
+                            //
+                            //   ],
+                            // ),
+                            ),
                       );
                     }
-                    return Center(child: CircularProgressIndicator(),);
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
                   },
-
                 ),
                 SizedBox(
                   height: 20.0,
@@ -101,35 +113,43 @@ class HomeCustomerPage extends StatelessWidget {
                   child: Row(
                     children: [
                       ItemCarouselWidget(
-                        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX9g1Mdod7v9Uq2FPvd47wEU0hzKXbtjbHrQ&usqp=CAU",
+                        image:
+                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX9g1Mdod7v9Uq2FPvd47wEU0hzKXbtjbHrQ&usqp=CAU",
                         title: "Costillar de cordero",
-                        subtitle: "Costillar de cordero con especias y mucha papa frita",
+                        subtitle:
+                            "Costillar de cordero con especias y mucha papa frita",
                         price: "50.00",
                         rate: "4.6",
                         discount: "50.0",
                         goTo: ProductDetailPage(),
                       ),
                       ItemCarouselWidget(
-                        image: "https://www.el10.pe/wp-content/uploads/2020/10/parrilla-casa.jpg",
+                        image:
+                            "https://www.el10.pe/wp-content/uploads/2020/10/parrilla-casa.jpg",
                         title: "Costilar de cordero",
-                        subtitle: "Costillar de cordero con especias y mucha papa frita",
+                        subtitle:
+                            "Costillar de cordero con especias y mucha papa frita",
                         price: "50.00",
                         rate: "4.6",
                         goTo: ProductDetailPage(),
                       ),
                       ItemCarouselWidget(
-                        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX9g1Mdod7v9Uq2FPvd47wEU0hzKXbtjbHrQ&usqp=CAU",
+                        image:
+                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX9g1Mdod7v9Uq2FPvd47wEU0hzKXbtjbHrQ&usqp=CAU",
                         title: "Costilar de cordero",
-                        subtitle: "Costillar de cordero con especias y mucha papa frita",
+                        subtitle:
+                            "Costillar de cordero con especias y mucha papa frita",
                         price: "50.00",
                         rate: "4.6",
                         discount: "50.0",
                         goTo: ProductDetailPage(),
                       ),
                       ItemCarouselWidget(
-                        image: "https://www.el10.pe/wp-content/uploads/2020/10/parrilla-casa.jpg",
+                        image:
+                            "https://www.el10.pe/wp-content/uploads/2020/10/parrilla-casa.jpg",
                         title: "Costilar de cordero",
-                        subtitle: "Costillar de cordero con especias y mucha papa frita",
+                        subtitle:
+                            "Costillar de cordero con especias y mucha papa frita",
                         price: "50.00",
                         rate: "4.6",
                         goTo: ProductDetailPage(),
@@ -162,17 +182,16 @@ class HomeCustomerPage extends StatelessWidget {
                   child: Row(
                     children: [
                       ItemCarouselWidget(
-                        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX9g1Mdod7v9Uq2FPvd47wEU0hzKXbtjbHrQ&usqp=CAU",
+                        image:
+                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX9g1Mdod7v9Uq2FPvd47wEU0hzKXbtjbHrQ&usqp=CAU",
                         title: "Costilar de cordero",
-                        subtitle: "Costillar de cordero con especias y mucha papa frita",
+                        subtitle:
+                            "Costillar de cordero con especias y mucha papa frita",
                         price: "50.00",
                         rate: "4.6",
                         discount: "50.0",
                         goTo: ProductDetailPage(),
-
                       ),
-
-
                     ],
                   ),
                 ),
@@ -202,15 +221,16 @@ class HomeCustomerPage extends StatelessWidget {
                   child: Row(
                     children: [
                       ItemCarouselWidget(
-                        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX9g1Mdod7v9Uq2FPvd47wEU0hzKXbtjbHrQ&usqp=CAU",
+                        image:
+                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX9g1Mdod7v9Uq2FPvd47wEU0hzKXbtjbHrQ&usqp=CAU",
                         title: "Costilar de cordero",
-                        subtitle: "Costillar de cordero con especias y mucha papa frita",
+                        subtitle:
+                            "Costillar de cordero con especias y mucha papa frita",
                         price: "50.00",
                         rate: "4.6",
                         discount: "50.0",
                         goTo: ProductDetailPage(),
                       ),
-
                     ],
                   ),
                 ),
