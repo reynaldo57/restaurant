@@ -62,6 +62,7 @@ class HomeCustomerPage extends StatelessWidget {
                   future: _firestoreService.getCategories(),
                   builder: (BuildContext, AsyncSnapshot snap){
                     if(snap.hasData){
+                      List<Map<String, dynamic>> categories = snap.data;
                       return Container(
                         margin: EdgeInsets.symmetric(horizontal: 10.0),
                         child: SingleChildScrollView(
@@ -78,21 +79,7 @@ class HomeCustomerPage extends StatelessWidget {
                                 primary: false,
                                 goTo: CategoryListProductPage(),
                               ),
-                              CategoryFilterWidget(
-                                text: "Bebidas",
-                                primary: false,
-                                goTo: CategoryListProductPage(),
-                              ),
-                              CategoryFilterWidget(
-                                text: "Platos de Fondo",
-                                primary: false,
-                                goTo: CategoryListProductPage(),
-                              ),
-                              CategoryFilterWidget(
-                                text: "Entradas",
-                                primary: false,
-                                goTo: CategoryListProductPage(),
-                              ),
+
 
                             ],
                           ),
