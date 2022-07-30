@@ -7,6 +7,9 @@ import 'package:restaurant/widgets/item_carousel_widget.dart';
 import 'package:restaurant/widgets/text_normal_widget.dart';
 
 class HomeCustomerPage extends StatelessWidget {
+
+  FirestoreService _firestoreService = new FirestoreService();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,41 +58,50 @@ class HomeCustomerPage extends StatelessWidget {
                   height: 10.0,
                 ),
                 //categories
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 10.0),
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: [
-                        CategoryFilterWidget(
-                          text: "Todos",
-                          primary: true,
-                          goTo: CategoryListProductPage(),
-                        ),
-                        CategoryFilterWidget(
-                          text: "Postres",
-                          primary: false,
-                          goTo: CategoryListProductPage(),
-                        ),
-                        CategoryFilterWidget(
-                          text: "Bebidas",
-                          primary: false,
-                          goTo: CategoryListProductPage(),
-                        ),
-                        CategoryFilterWidget(
-                          text: "Platos de Fondo",
-                          primary: false,
-                          goTo: CategoryListProductPage(),
-                        ),
-                        CategoryFilterWidget(
-                          text: "Entradas",
-                          primary: false,
-                          goTo: CategoryListProductPage(),
-                        ),
+                FutureBuilder(
+                  future: _firestoreService.getCategories(),
+                  builder: (BuildContext, AsyncSnapshot snap){
+                    if(snap.hasData){
+                      return Container(
+                        margin: EdgeInsets.symmetric(horizontal: 10.0),
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              CategoryFilterWidget(
+                                text: "Todos",
+                                primary: true,
+                                goTo: CategoryListProductPage(),
+                              ),
+                              CategoryFilterWidget(
+                                text: "Postres",
+                                primary: false,
+                                goTo: CategoryListProductPage(),
+                              ),
+                              CategoryFilterWidget(
+                                text: "Bebidas",
+                                primary: false,
+                                goTo: CategoryListProductPage(),
+                              ),
+                              CategoryFilterWidget(
+                                text: "Platos de Fondo",
+                                primary: false,
+                                goTo: CategoryListProductPage(),
+                              ),
+                              CategoryFilterWidget(
+                                text: "Entradas",
+                                primary: false,
+                                goTo: CategoryListProductPage(),
+                              ),
 
-                      ],
-                    ),
-                  ),
+                            ],
+                          ),
+                        ),
+                      );
+                    }
+                    return Center(child: CircularProgressIndicator(),);
+                  },
+
                 ),
                 SizedBox(
                   height: 20.0,
@@ -103,7 +115,7 @@ class HomeCustomerPage extends StatelessWidget {
                     children: [
                       ItemCarouselWidget(
                         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX9g1Mdod7v9Uq2FPvd47wEU0hzKXbtjbHrQ&usqp=CAU",
-                        title: "Costilar de cordero",
+                        title: "Costillar de cordero",
                         subtitle: "Costillar de cordero con especias y mucha papa frita",
                         price: "50.00",
                         rate: "4.6",
