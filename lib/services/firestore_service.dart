@@ -10,6 +10,9 @@ class FirestoreService {
 
   getCategories()async{
     QuerySnapshot _collectionReference = await _firestoreReferences.get();
-    print(_collectionReference.docs.length);
+    _collectionReference.docs.forEach((element){
+      Map<String, dynamic> categoryMap = element.data() as Map<String, dynamic>;
+      print(categoryMap);
+    });
   }
 }
