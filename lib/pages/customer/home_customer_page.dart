@@ -71,7 +71,7 @@ class HomeCustomerPage extends StatelessWidget {
                               children: categories
                                   .map<Widget>(
                                     (e) => CategoryFilterWidget(
-                                  primary: false,
+                                  primary: e["order"],
                                   text: e["description"],
                                   goTo: CategoryListProductPage(),
                                 ),
