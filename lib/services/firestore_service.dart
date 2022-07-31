@@ -5,14 +5,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirestoreService {
+  
+  String collection;
+  
+  FirestoreService({required this.collection});
 
-  CollectionReference _firestoreReferences = FirebaseFirestore.instance.collection('categories');
+  late CollectionReference _firestoreReferences = FirebaseFirestore.instance.collection(this.collection);
 
   Future<List<Map<String, dynamic>>>getCategories() async{
     List<Map<String, dynamic>> categories = [];
     QuerySnapshot _collectionReference = await _firestoreReferences.orderBy('order', descending: true).get();
     _collectionReference.docs.forEach((QueryDocumentSnapshot element){
       Map<String, dynamic> categoryMap = element.data() as Map<String, dynamic>;
+      categoryMap["id"] = element.id;
+      print(categoryMap);
       categories.add(categoryMap);
     });
     return categories;

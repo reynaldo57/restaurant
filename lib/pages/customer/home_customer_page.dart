@@ -7,7 +7,7 @@ import 'package:restaurant/widgets/item_carousel_widget.dart';
 import 'package:restaurant/widgets/text_normal_widget.dart';
 
 class HomeCustomerPage extends StatelessWidget {
-  FirestoreService _firestoreService = new FirestoreService();
+  FirestoreService _categoriesFirestoreService = new FirestoreService(collection: 'categories');
 
   @override
   Widget build(BuildContext context) {
@@ -42,9 +42,9 @@ class HomeCustomerPage extends StatelessWidget {
                       ),
                       IconButton(
                         onPressed: () {
-                          FirestoreService _firestoreService =
-                              new FirestoreService();
-                          _firestoreService.getCategories();
+                          // FirestoreService _firestoreService =
+                          //     new FirestoreService();
+                          // _firestoreService.getCategories();
                         },
                         icon: Icon(
                           Icons.search,
@@ -59,7 +59,7 @@ class HomeCustomerPage extends StatelessWidget {
                 ),
                 //categories
                 FutureBuilder(
-                  future: _firestoreService.getCategories(),
+                  future: _categoriesFirestoreService.getCategories(),
                   builder: (BuildContext, AsyncSnapshot snap) {
                     if (snap.hasData) {
                       List<Map<String, dynamic>> categories = snap.data;
