@@ -8,6 +8,8 @@ import 'package:restaurant/widgets/text_normal_widget.dart';
 
 class HomeCustomerPage extends StatelessWidget {
   FirestoreService _categoriesFirestoreService = new FirestoreService(collection: 'categories');
+  FirestoreService _productFirestoreService = new FirestoreService(collection: 'products');
+
 
   @override
   Widget build(BuildContext context) {

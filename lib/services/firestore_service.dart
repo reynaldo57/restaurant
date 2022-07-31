@@ -18,9 +18,11 @@ class FirestoreService {
     _collectionReference.docs.forEach((QueryDocumentSnapshot element){
       Map<String, dynamic> categoryMap = element.data() as Map<String, dynamic>;
       categoryMap["id"] = element.id;
-      print(categoryMap);
       categories.add(categoryMap);
     });
     return categories;
+  }
+  Future<List<Map<String, dynamic>>> getProductHome() async{
+    return [];
   }
 }
