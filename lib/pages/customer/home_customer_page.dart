@@ -189,14 +189,11 @@ class HomeCustomerPage extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         child: Row(
                           children: products.map<Widget>((e) => ItemCarouselWidget(
-                            image:
-                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX9g1Mdod7v9Uq2FPvd47wEU0hzKXbtjbHrQ&usqp=CAU",
-                            title: "Costilar de cordero",
-                            subtitle:
-                            "Costillar de cordero con especias y mucha papa frita",
-                            price: "50.00",
-                            rate: "4.6",
-                            discount: "50.0",
+                            image: e["image"],
+                            title: e["name"],
+                            subtitle: e["description"],
+                            price: e["price"].toStringAsFixed(2),
+                            rate: e["rate"].toStringAsFixed(1),
                             goTo: ProductDetailPage(),
                           ),).toList(),
                         ),
