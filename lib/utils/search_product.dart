@@ -55,7 +55,7 @@ class SearchProduct extends SearchDelegate{
 Widget buildSuggestions(BuildContext context) {
     
     List<String> suggestions = names.where((element){
-      return element.contains(query);
+      return element.toLowerCase().contains(query.toLowerCase());
     }).toList();
 
     print(suggestions);
