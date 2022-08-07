@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant/widgets/item_search_widget.dart';
 
 class SearchProduct extends SearchDelegate {
 
@@ -57,17 +58,20 @@ class SearchProduct extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    List<String> suggestions = names.where((element) {
-      return element.toLowerCase().contains(query.toLowerCase());
+    List<Map<String, dynamic>> suggestions = listProducts.where((element) {
+      return element["name"].toLowerCase().contains(query.toLowerCase());
     }).toList();
-
-    print(suggestions);
 
     return ListView.builder(
       itemCount: suggestions.length,
       itemBuilder: (BuildContext, int index) {
-        return ListTile(
-          title: Text(suggestions[index], style: TextStyle(color: Colors.white),),
+        return ItemSearchWidget(
+          image: suggestions[index]['image'],
+          title: suggestions[index]['name'],
+          subtitle: suggestions[index]['description'],
+          time: suggestions[index]['time'].toStringAsFixed(1),
+          rate: suggestions[index]['rate'].toStringAsFixed(1),
+          price: suggestions[index]['price'].toStringAsFixed(2),
         );
       },
     );
@@ -79,13 +83,16 @@ class SearchProduct extends SearchDelegate {
       return element["name"].toLowerCase().contains(query.toLowerCase());
     }).toList();
 
-    print(listProducts);
-
     return ListView.builder(
       itemCount: suggestions.length,
       itemBuilder: (BuildContext, int index) {
-        return ListTile(
-          title: Text(suggestions[index]["name"], style: TextStyle(color: Colors.white),),
+        return ItemSearchWidget(
+          image: suggestions[index]['image'],
+          title: suggestions[index]['name'],
+          subtitle: suggestions[index]['description'],
+          time: suggestions[index]['time'].toStringAsFixed(1),
+          rate: suggestions[index]['rate'].toStringAsFixed(1),
+          price: suggestions[index]['price'].toStringAsFixed(2),
         );
       },
     );
