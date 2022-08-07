@@ -6,6 +6,30 @@ class SearchProduct extends SearchDelegate {
   List<String> names = ["Camila chapman", "Belinda Cameron"];
 
   @override
+  String get searchFieldLabel => "Buscar Producto";
+
+  @override
+  ThemeData appBarTheme(BuildContext context) {
+    return Theme.of(context).copyWith(
+      scaffoldBackgroundColor: Color(0xff1B1A21),
+      inputDecorationTheme: InputDecorationTheme(
+        hintStyle: TextStyle(
+          color: Colors.white54,
+          fontSize: 16.0
+        ),
+      ),
+      appBarTheme: AppBarTheme(
+        elevation: 0,
+        backgroundColor: Color(0xff1B1A21),
+      ),
+      textTheme: TextTheme(
+        headline6: TextStyle(color: Colors.white),
+      ),
+    );
+  }
+
+
+  @override
   List<Widget>? buildActions(BuildContext context) {
     return [
       IconButton(
@@ -39,7 +63,7 @@ class SearchProduct extends SearchDelegate {
       itemCount: suggestions.length,
       itemBuilder: (BuildContext, int index) {
         return ListTile(
-          title: Text(suggestions[index]),
+          title: Text(suggestions[index], style: TextStyle(color: Colors.white),),
         );
       },
     );
@@ -57,7 +81,7 @@ class SearchProduct extends SearchDelegate {
       itemCount: suggestions.length,
       itemBuilder: (BuildContext, int index) {
         return ListTile(
-          title: Text(suggestions[index]),
+          title: Text(suggestions[index], style: TextStyle(color: Colors.white),),
         );
       },
     );
