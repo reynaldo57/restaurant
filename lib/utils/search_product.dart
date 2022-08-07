@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class SearchProduct extends SearchDelegate {
+
+  List<Map<String, dynamic>> listProducts = [];
   String result = "";
+
+  SearchProduct({required this.listProducts});
 
   List<String> names = ["Camila chapman", "Belinda Cameron"];
 
@@ -71,17 +75,17 @@ class SearchProduct extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    List<String> suggestions = names.where((element) {
-      return element.toLowerCase().contains(query.toLowerCase());
+    List<Map<String, dynamic>> suggestions = listProducts.where((element) {
+      return element["name"].toLowerCase().contains(query.toLowerCase());
     }).toList();
 
-    print(suggestions);
+    print(listProducts);
 
     return ListView.builder(
       itemCount: suggestions.length,
       itemBuilder: (BuildContext, int index) {
         return ListTile(
-          title: Text(suggestions[index], style: TextStyle(color: Colors.white),),
+          title: Text(suggestions[index]["name"], style: TextStyle(color: Colors.white),),
         );
       },
     );

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:restaurant/pages/customer/category_list_product_page.dart';
 import 'package:restaurant/pages/customer/product_detail_page.dart';
@@ -44,8 +46,8 @@ class HomeCustomerPage extends StatelessWidget {
                         child: Container(),
                       ),
                       IconButton(
-                        onPressed: () {
-                          final result = showSearch(context: context, delegate: SearchProduct());
+                        onPressed: () async{
+                          final result = await showSearch(context: context, delegate: SearchProduct (listProducts: await ( _productFirestoreService.getAllProducts()) ));
                         },
                         icon: Icon(
                           Icons.search,
