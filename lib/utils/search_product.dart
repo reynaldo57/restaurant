@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:restaurant/pages/customer/product_detail_page.dart';
 import 'package:restaurant/widgets/item_search_widget.dart';
 
 class SearchProduct extends SearchDelegate {
@@ -72,6 +75,7 @@ class SearchProduct extends SearchDelegate {
           time: suggestions[index]['time'].toStringAsFixed(1),
           rate: suggestions[index]['rate'].toStringAsFixed(1),
           price: suggestions[index]['price'].toStringAsFixed(2),
+          goTo: ProductDetailPage(product: suggestions[index],),
         );
       },
     );
@@ -93,6 +97,7 @@ class SearchProduct extends SearchDelegate {
           time: suggestions[index]['time'].toStringAsFixed(1),
           rate: suggestions[index]['rate'].toStringAsFixed(1),
           price: suggestions[index]['price'].toStringAsFixed(2),
+          goTo: ProductDetailPage(product: suggestions[index],),
         );
       },
     );
