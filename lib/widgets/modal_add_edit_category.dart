@@ -13,34 +13,59 @@ class ModalAddCategory extends StatefulWidget {
 class _ModalAddCategoryState extends State<ModalAddCategory> {
 
   bool _order = false;
+  final _formKey = GlobalKey<FormState>();
   FirestoreService _firestoreService = new FirestoreService(collection: "categories");
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text("Agregar categoria"),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          TextField(
-            decoration: InputDecoration(
-                hintText: "Categoria"
-            ),
-          ),
-          Row(
-            children: [
-              Text("Order: "),
-              Checkbox(
-                  value: _order,
-                  onChanged: (bool? value){
-                    _order = value!;
-                    setState(() {
+      content: Form(
+        key: _formKey,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextFormField(
+              decoration: InputDecoration(
+                  hintText: "Categoria"
+              ),
+              validator: (String? value){
 
-                    });
-                  }),
-            ],
-          )
-        ],
+                if(value == null || value.isEmpty){
+                  return "Campo Obligatorio";
+                }
+                return null;
+
+              },
+            ),
+            TextFormField(
+              decoration: InputDecoration(
+                  hintText: "Descripcion"
+              ),
+              validator: (String? value){
+
+                if(value == null || value.isEmpty){
+                  return "Campo Descripcion obligatorio";
+                }
+                return null;
+
+              },
+            ),
+            Row(
+              children: [
+                Text("Order: "),
+                Checkbox(
+                    value: _order,
+                    onChanged: (bool? value){
+                      _order = value!;
+                      setState(() {
+
+                      });
+                    }),
+              ],
+            )
+          ],
+        ),
       ),
       actions: [
         TextButton(
@@ -53,13 +78,14 @@ class _ModalAddCategoryState extends State<ModalAddCategory> {
         ),
         TextButton(
           onPressed: (){
-            _firestoreService.addFirestore({
-              "description": "sopas",
-              "order": false,
-            });
+            // _firestoreService.addFirestore({
+            //   "description": "sopas",
+            //   "order": false,
+            // });
+            if(_formKey.currentState!.validate());
           },
           child: Text(
-              "Cancelar"
+              "Agregar"
           ),
         ),
       ],
