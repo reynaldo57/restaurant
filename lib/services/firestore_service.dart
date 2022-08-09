@@ -40,4 +40,10 @@ class FirestoreService {
     });
     return products;
   }
+  addFirestore(Map<String, dynamic> data){
+    _firestoreReferences.add(data).then((value){
+      print("Datos Registrados");
+    });
+  }
+
 }

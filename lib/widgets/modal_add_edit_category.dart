@@ -2,6 +2,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:restaurant/services/firestore_service.dart';
 
 class ModalAddCategory extends StatefulWidget {
 
@@ -12,6 +13,7 @@ class ModalAddCategory extends StatefulWidget {
 class _ModalAddCategoryState extends State<ModalAddCategory> {
 
   bool _order = false;
+  FirestoreService _firestoreService = new FirestoreService(collection: "categories");
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +52,12 @@ class _ModalAddCategoryState extends State<ModalAddCategory> {
           ),
         ),
         TextButton(
-          onPressed: (){},
+          onPressed: (){
+            _firestoreService.addFirestore({
+              "description": "sopas",
+              "order": false,
+            });
+          },
           child: Text(
               "Cancelar"
           ),
