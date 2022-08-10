@@ -14,6 +14,7 @@ class _ModalAddCategoryState extends State<ModalAddCategory> {
 
   bool _order = false;
   final _formKey = GlobalKey<FormState>();
+  TextEditingController _categoryController = new TextEditingController();
   FirestoreService _firestoreService = new FirestoreService(collection: "categories");
 
   @override
@@ -26,6 +27,7 @@ class _ModalAddCategoryState extends State<ModalAddCategory> {
           mainAxisSize: MainAxisSize.min,
           children: [
             TextFormField(
+              controller: _categoryController,
               decoration: InputDecoration(
                   hintText: "Categoria"
               ),
@@ -38,19 +40,19 @@ class _ModalAddCategoryState extends State<ModalAddCategory> {
 
               },
             ),
-            TextFormField(
-              decoration: InputDecoration(
-                  hintText: "Descripcion"
-              ),
-              validator: (String? value){
-
-                if(value == null || value.isEmpty){
-                  return "Campo Descripcion obligatorio";
-                }
-                return null;
-
-              },
-            ),
+            // TextFormField(
+            //   decoration: InputDecoration(
+            //       hintText: "Descripcion"
+            //   ),
+            //   validator: (String? value){
+            //
+            //     if(value == null || value.isEmpty){
+            //       return "Campo Descripcion obligatorio";
+            //     }
+            //     return null;
+            //
+            //   },
+            // ),
             Row(
               children: [
                 Text("Order: "),
@@ -78,11 +80,12 @@ class _ModalAddCategoryState extends State<ModalAddCategory> {
         ),
         TextButton(
           onPressed: (){
-            // _firestoreService.addFirestore({
-            //   "description": "sopas",
-            //   "order": false,
-            // });
+
             if(_formKey.currentState!.validate());
+            _firestoreService.addFirestore({
+              "description": _categoryController.text,
+              "order": _order,
+            });
           },
           child: Text(
               "Agregar"
