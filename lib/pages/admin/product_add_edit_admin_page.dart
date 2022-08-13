@@ -6,6 +6,18 @@ class ProductAddEditAdminPage extends StatelessWidget {
 
   final _formKey = GlobalKey<FormState>();
 
+  List<Map<String, dynamic>> categories = [
+    {"id": "Dsdsad",
+      "category": "Sopas"
+    },
+    {"id": "jg",
+      "category": "Bebidas"
+    },
+    {"id": "iuy",
+      "category": "Entradas"
+    },
+  ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -60,26 +72,13 @@ class ProductAddEditAdminPage extends StatelessWidget {
                       labelText: "Categoria",
                       hintText: "--Selecciona una Categoria"
                   ),
-                  value: "Hola",
-                  onChanged: (String? value){
+                  onChanged: (Object? value){
                     print(value);
                   },
-                  items: [
-                    DropdownMenuItem(
-                      child: Text("Hola"),
-                      value: "Hola",
-                      onTap: (){
-
-                      },
-                    ),
-                    DropdownMenuItem(
-                      child: Text("Hola 2"),
-                      value: "Hola 2",
-                      onTap: (){
-
-                      },
-                    ),
-                  ],
+                  items: categories.map((e) => DropdownMenuItem(
+                      child: Text(e["category"]),
+                      value: e["id"],
+                  )).toList()
                 ),
                 SizedBox(
                   height: 10.0,
