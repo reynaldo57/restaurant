@@ -12,7 +12,9 @@ class ProductAddEditAdminPage extends StatefulWidget {
 class _ProductAddEditAdminPageState extends State<ProductAddEditAdminPage> {
   final _formKey = GlobalKey<FormState>();
   FirestoreService _categoryFirestoreService = new FirestoreService(collection: "categories");
+  TextEditingController _ingredientController = new TextEditingController();
   List<Map<String, dynamic>> categories = [];
+  List<String> ingredients = [];
   String selectCategory = "";
 
   @override
@@ -152,6 +154,7 @@ class _ProductAddEditAdminPageState extends State<ProductAddEditAdminPage> {
                   children: [
                     Expanded(
                       child: TextFormField(
+                        controller: _ingredientController,
                         decoration: InputDecoration(
                             labelText: "Ingrediente",
                             hintText: "Ingrediente del Producto"
@@ -168,7 +171,11 @@ class _ProductAddEditAdminPageState extends State<ProductAddEditAdminPage> {
                       width: 10.0,
                     ),
                     MaterialButton(
-                        onPressed: (){},
+                        onPressed: (){
+                          ingredients.add(_ingredientController.text);
+                          _ingredientController.clear();
+                          print(ingredients);
+                          },
                       child: Icon(Icons.add, color: Colors.white,),
                       color: Colors.deepPurpleAccent,
                     ),
