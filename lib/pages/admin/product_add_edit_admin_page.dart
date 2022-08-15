@@ -145,6 +145,55 @@ class _ProductAddEditAdminPageState extends State<ProductAddEditAdminPage> {
                     return null;
                   },
                 ),
+                SizedBox(
+                  height: 10.0,
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                            labelText: "Ingrediente",
+                            hintText: "Ingrediente del Producto"
+                        ),
+                        validator: (String? value){
+                          if(value!.isEmpty || value == null){
+                            return "Completar el campo";
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10.0,
+                    ),
+                    MaterialButton(
+                        onPressed: (){},
+                      child: Icon(Icons.add, color: Colors.white,),
+                      color: Colors.deepPurpleAccent,
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+
+                SizedBox(
+                  height: 260,
+                  child: ListView.builder(
+                    primary: true,
+                    shrinkWrap: true,
+                    physics: ScrollPhysics(),
+                    itemBuilder: (BuildContext context, int index){
+                      return ListTile(
+                        title: Text("Papas Nativas"),
+                      );
+                    },
+                  ),
+                ),
+                SizedBox(
+                  height: 70.0,
+                ),
               ],
             ),
           ),
