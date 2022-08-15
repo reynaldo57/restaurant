@@ -1,23 +1,36 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:restaurant/services/firestore_service.dart';
 
-class ProductAddEditAdminPage extends StatelessWidget {
+class ProductAddEditAdminPage extends StatefulWidget {
 
+  @override
+  State<ProductAddEditAdminPage> createState() => _ProductAddEditAdminPageState();
+}
+
+class _ProductAddEditAdminPageState extends State<ProductAddEditAdminPage> {
   final _formKey = GlobalKey<FormState>();
+  FirestoreService _categoryFirestoreService = new FirestoreService(collection: "categories");
+  List<Map<String, dynamic>> categories = [];
+  String selectCategory = "";
 
-  List<Map<String, dynamic>> categories = [
-    {"id": "Dsdsad",
-      "category": "Sopas"
-    },
-    {"id": "jg",
-      "category": "Bebidas"
-    },
-    {"id": "iuy",
-      "category": "Entradas"
-    },
-  ];
+  @override
+  void initState() {
+    super.initState();
+    getDataCategory();
+  }
 
+  getDataCategory(){
+    _categoryFirestoreService.getCategories().then((value){
+      categories = value;
+      selectCategory = categories[0]["id"];
+      setState(() {
+
+      });
+
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,18 +78,22 @@ class ProductAddEditAdminPage extends StatelessWidget {
                       return "Completar el campo";
                     }
                     return null;
+
                   },
                 ),
-                DropdownButtonFormField(
+                DropdownButtonFormField<String>(
+                  style: TextStyle(
+                    color: Colors.black87
+                  ),
                   decoration: InputDecoration(
                       labelText: "Categoria",
                       hintText: "--Selecciona una Categoria"
                   ),
-                  onChanged: (Object? value){
-                    print(value);
+                  value: selectCategory,
+                  onChanged: (String? value){
                   },
-                  items: categories.map((e) => DropdownMenuItem(
-                      child: Text(e["category"]),
+                  items: categories.map((e) => DropdownMenuItem<String>(
+                      child: Text(e["description"]),
                       value: e["id"],
                   )).toList()
                 ),
