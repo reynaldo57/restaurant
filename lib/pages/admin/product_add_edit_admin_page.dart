@@ -174,7 +174,10 @@ class _ProductAddEditAdminPageState extends State<ProductAddEditAdminPage> {
                         onPressed: (){
                           ingredients.add(_ingredientController.text);
                           _ingredientController.clear();
-                          print(ingredients);
+                          setState(() {
+
+                          });
+
                           },
                       child: Icon(Icons.add, color: Colors.white,),
                       color: Colors.deepPurpleAccent,
@@ -187,16 +190,17 @@ class _ProductAddEditAdminPageState extends State<ProductAddEditAdminPage> {
 
                 SizedBox(
                   height: 260,
-                  child: ListView.builder(
+                  child: ingredients.length > 0 ? ListView.builder(
                     primary: true,
                     shrinkWrap: true,
                     physics: ScrollPhysics(),
+                    itemCount: ingredients.length,
                     itemBuilder: (BuildContext context, int index){
                       return ListTile(
-                        title: Text("Papas Nativas"),
+                        title: Text(ingredients[index]),
                       );
                     },
-                  ),
+                  ): Center(child: Text("Aun n ohay ingredientes"),)
                 ),
                 SizedBox(
                   height: 70.0,
