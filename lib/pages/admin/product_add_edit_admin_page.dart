@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:restaurant/services/firestore_service.dart';
@@ -14,6 +14,9 @@ class _ProductAddEditAdminPageState extends State<ProductAddEditAdminPage> {
   final _formKey = GlobalKey<FormState>();
   FirestoreService _categoryFirestoreService =
       new FirestoreService(collection: "categories");
+
+  firebase_storage.FirebaseStorage _storage = firebase_storage.FirebaseStorage.instance;
+
   TextEditingController _ingredientController = new TextEditingController();
   List<Map<String, dynamic>> categories = [];
   List<String> ingredients = [];
@@ -35,13 +38,24 @@ class _ProductAddEditAdminPageState extends State<ProductAddEditAdminPage> {
     });
   }
 
-  getImageGallery() async{
-    XFile? selectImageGallery = await _picker.pickImage(source: ImageSource.gallery);
+  getImageGallery() async {
+    XFile? selectImageGallery =
+        await _picker.pickImage(source: ImageSource.gallery);
     image = selectImageGallery;
-    setState(() {
+    setState(() {});
+  }
 
-    });
-}
+  getImageCamera() async {
+    XFile? selectImageCamera =
+    await _picker.pickImage(source: ImageSource.camera);
+    image = selectImageCamera;
+    setState(() {});
+  }
+
+  uploadImageFirebase(){
+    firebase_storage.Reference reference = _storage.ref().child('Products');
+    print(reference);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +65,8 @@ class _ProductAddEditAdminPageState extends State<ProductAddEditAdminPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          if (_formKey.currentState!.validate()) {}
+          //if (_formKey.currentState!.validate()) {}
+          uploadImageFirebase();
         },
         child: Icon(Icons.save),
       ),
@@ -218,7 +233,9 @@ class _ProductAddEditAdminPageState extends State<ProductAddEditAdminPage> {
                       ),
                     ),
                     ElevatedButton.icon(
-                      onPressed: () {},
+                      onPressed: () {
+                        getImageCamera();
+                      },
                       icon: Icon(Icons.camera_alt),
                       label: Text(
                         "Camara",
@@ -226,7 +243,19 @@ class _ProductAddEditAdminPageState extends State<ProductAddEditAdminPage> {
                     ),
                   ],
                 ),
-                image != null ? Image.file(File(image!.path)) : Text("No hay Imagen"),
+                SizedBox(
+                  height: 12.0,
+                ),
+                image != null
+                    ? Container(
+                        height: 200,
+                        width: double.infinity,
+                        child: Image.file(
+                          File(image!.path),
+                          fit: BoxFit.cover,
+                        ),
+                      )
+                    : Text("No hay Imagen"),
                 SizedBox(
                   height: 70.0,
                 ),
