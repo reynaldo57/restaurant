@@ -52,9 +52,10 @@ class _ProductAddEditAdminPageState extends State<ProductAddEditAdminPage> {
     setState(() {});
   }
 
-  uploadImageFirebase(){
+  uploadImageFirebase() async{
     firebase_storage.Reference reference = _storage.ref().child('Products');
-    print(reference);
+    firebase_storage.TaskSnapshot upload = await reference.child("mandarina.jpg").putFile(File(image!.path),);
+    print(upload);
   }
 
   @override
