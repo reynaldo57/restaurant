@@ -15,9 +15,16 @@ class _ProductAddEditAdminPageState extends State<ProductAddEditAdminPage> {
   FirestoreService _categoryFirestoreService =
       new FirestoreService(collection: "categories");
 
-  firebase_storage.FirebaseStorage _storage = firebase_storage.FirebaseStorage.instance;
+  firebase_storage.FirebaseStorage _storage =
+      firebase_storage.FirebaseStorage.instance;
 
+  TextEditingController _nameController = new TextEditingController();
+  TextEditingController _descriptionController = new TextEditingController();
+  TextEditingController _priceController = new TextEditingController();
+  TextEditingController _timeController = new TextEditingController();
+  TextEditingController _rateController = new TextEditingController();
   TextEditingController _ingredientController = new TextEditingController();
+
   List<Map<String, dynamic>> categories = [];
   List<String> ingredients = [];
   String selectCategory = "";
@@ -47,15 +54,34 @@ class _ProductAddEditAdminPageState extends State<ProductAddEditAdminPage> {
 
   getImageCamera() async {
     XFile? selectImageCamera =
-    await _picker.pickImage(source: ImageSource.camera);
+        await _picker.pickImage(source: ImageSource.camera);
     image = selectImageCamera;
     setState(() {});
   }
 
-  uploadImageFirebase() async{
+  uploadImageFirebase() async {
     firebase_storage.Reference reference = _storage.ref().child('Products');
-    firebase_storage.TaskSnapshot upload = await reference.child("mandarina.jpg").putFile(File(image!.path),);
-    print(upload);
+    String time = DateTime.now().toString();
+    firebase_storage.TaskSnapshot upload =
+        await reference.child("$time.jpg").putFile(
+              File(image!.path),
+            );
+    String url = await upload.ref.getDownloadURL();
+  }
+
+  setProduct(){
+    Map<String, dynamic> product = {
+      "category": selectCategory,
+      "description": _descriptionController.text,
+      "discount": null,
+      "image": "gsdfsdf",
+      "ingredients": ingredients,
+      "name": _nameController.text,
+      "price": double.parse(_priceController.text),
+      "time": int.parse(_timeController.text),
+      "rate": double.parse(_rateController.text),
+    };
+    print(product);
   }
 
   @override
@@ -67,7 +93,9 @@ class _ProductAddEditAdminPageState extends State<ProductAddEditAdminPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           //if (_formKey.currentState!.validate()) {}
-          uploadImageFirebase();
+          //uploadImageFirebase();
+          setProduct();
+
         },
         child: Icon(Icons.save),
       ),
@@ -79,8 +107,11 @@ class _ProductAddEditAdminPageState extends State<ProductAddEditAdminPage> {
             child: Column(
               children: [
                 TextFormField(
+                  controller: _nameController,
                   decoration: InputDecoration(
-                      labelText: "Producto", hintText: "Nombre del Producto"),
+                    labelText: "Producto",
+                    hintText: "Nombre del Producto",
+                  ),
                   validator: (String? value) {
                     if (value!.isEmpty || value == null) {
                       return "Completar el campo";
@@ -92,6 +123,7 @@ class _ProductAddEditAdminPageState extends State<ProductAddEditAdminPage> {
                   height: 10.0,
                 ),
                 TextFormField(
+                  controller: _descriptionController,
                   decoration: InputDecoration(
                       labelText: "Descripcion",
                       hintText: "Descripcion del Producto"),
@@ -119,6 +151,7 @@ class _ProductAddEditAdminPageState extends State<ProductAddEditAdminPage> {
                   height: 10.0,
                 ),
                 TextFormField(
+                  controller: _priceController,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                       labelText: "Precio", hintText: "Precio del Producto"),
@@ -133,6 +166,7 @@ class _ProductAddEditAdminPageState extends State<ProductAddEditAdminPage> {
                   height: 10.0,
                 ),
                 TextFormField(
+                  controller: _timeController,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                       labelText: "Tiempo", hintText: "Tiempo del Producto"),
@@ -147,6 +181,7 @@ class _ProductAddEditAdminPageState extends State<ProductAddEditAdminPage> {
                   height: 10.0,
                 ),
                 TextFormField(
+                  controller: _rateController,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                       labelText: "Puntaje", hintText: "Puntaje del Producto"),
