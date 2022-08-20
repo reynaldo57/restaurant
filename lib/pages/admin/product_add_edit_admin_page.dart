@@ -15,6 +15,9 @@ class _ProductAddEditAdminPageState extends State<ProductAddEditAdminPage> {
   FirestoreService _categoryFirestoreService =
       new FirestoreService(collection: "categories");
 
+  FirestoreService _productFirestoreService =
+      new FirestoreService(collection: "products");
+
   firebase_storage.FirebaseStorage _storage =
       firebase_storage.FirebaseStorage.instance;
 
@@ -67,21 +70,24 @@ class _ProductAddEditAdminPageState extends State<ProductAddEditAdminPage> {
               File(image!.path),
             );
     String url = await upload.ref.getDownloadURL();
+    saveProduct(url);
   }
 
-  setProduct(){
+  saveProduct(String urlImage){
     Map<String, dynamic> product = {
       "category": selectCategory,
       "description": _descriptionController.text,
       "discount": null,
-      "image": "gsdfsdf",
+      "image": urlImage,
       "ingredients": ingredients,
       "name": _nameController.text,
       "price": double.parse(_priceController.text),
       "time": int.parse(_timeController.text),
       "rate": double.parse(_rateController.text),
     };
-    print(product);
+
+    _productFirestoreService.addFirestore(product);
+
   }
 
   @override
@@ -92,10 +98,10 @@ class _ProductAddEditAdminPageState extends State<ProductAddEditAdminPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          //if (_formKey.currentState!.validate()) {}
+          if (_formKey.currentState!.validate()) {
+            uploadImageFirebase();
+          }
           //uploadImageFirebase();
-          setProduct();
-
         },
         child: Icon(Icons.save),
       ),
@@ -198,17 +204,18 @@ class _ProductAddEditAdminPageState extends State<ProductAddEditAdminPage> {
                 Row(
                   children: [
                     Expanded(
-                      child: TextFormField(
+                      child: TextField(
                         controller: _ingredientController,
                         decoration: InputDecoration(
                             labelText: "Ingrediente",
-                            hintText: "Ingrediente del Producto"),
-                        validator: (String? value) {
-                          if (value!.isEmpty || value == null) {
-                            return "Completar el campo";
-                          }
-                          return null;
-                        },
+                            hintText: "Ingrediente del Producto",
+                        ),
+                        // validator: (String? value) {
+                        //   if (value!.isEmpty || value == null) {
+                        //     return "Completar el campo";
+                        //   }
+                        //   return null;
+                        // },
                       ),
                     ),
                     SizedBox(
