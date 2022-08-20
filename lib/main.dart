@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurant/pages/admin/login_admin_page.dart';
-import 'package:restaurant/pages/customer/home_customer_page.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();

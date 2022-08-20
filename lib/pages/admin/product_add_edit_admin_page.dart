@@ -73,7 +73,7 @@ class _ProductAddEditAdminPageState extends State<ProductAddEditAdminPage> {
     saveProduct(url);
   }
 
-  saveProduct(String urlImage){
+  saveProduct(String urlImage) {
     Map<String, dynamic> product = {
       "category": selectCategory,
       "description": _descriptionController.text,
@@ -87,21 +87,33 @@ class _ProductAddEditAdminPageState extends State<ProductAddEditAdminPage> {
     };
 
     _productFirestoreService.addFirestore(product);
-
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //key: _scaffoldKey,
       appBar: AppBar(
         title: Text("Agregar Productos"),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           if (_formKey.currentState!.validate()) {
-            uploadImageFirebase();
+            if(image != null){
+              uploadImageFirebase();
+            }else{
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    "Por favor, selecciona una image",
+                  ),
+                  backgroundColor: Colors.redAccent,
+                ),
+              );
+            }
           }
           //uploadImageFirebase();
+
         },
         child: Icon(Icons.save),
       ),
@@ -207,8 +219,8 @@ class _ProductAddEditAdminPageState extends State<ProductAddEditAdminPage> {
                       child: TextField(
                         controller: _ingredientController,
                         decoration: InputDecoration(
-                            labelText: "Ingrediente",
-                            hintText: "Ingrediente del Producto",
+                          labelText: "Ingrediente",
+                          hintText: "Ingrediente del Producto",
                         ),
                         // validator: (String? value) {
                         //   if (value!.isEmpty || value == null) {
