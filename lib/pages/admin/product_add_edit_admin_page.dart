@@ -33,6 +33,7 @@ class _ProductAddEditAdminPageState extends State<ProductAddEditAdminPage> {
   String selectCategory = "";
   ImagePicker _picker = new ImagePicker();
   XFile? image;
+  bool isLoading = false;
 
   @override
   void initState() {
@@ -87,6 +88,10 @@ class _ProductAddEditAdminPageState extends State<ProductAddEditAdminPage> {
     };
 
     _productFirestoreService.addFirestore(product);
+    isLoading = false;
+    setState(() {
+
+    });
   }
 
   @override
@@ -100,6 +105,10 @@ class _ProductAddEditAdminPageState extends State<ProductAddEditAdminPage> {
         onPressed: () {
           if (_formKey.currentState!.validate()) {
             if(image != null){
+              isLoading = true;
+              setState(() {
+
+              });
               uploadImageFirebase();
             }else{
               ScaffoldMessenger.of(context).showSnackBar(
@@ -117,7 +126,7 @@ class _ProductAddEditAdminPageState extends State<ProductAddEditAdminPage> {
         },
         child: Icon(Icons.save),
       ),
-      body: SingleChildScrollView(
+      body: !isLoading ? SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(12.0),
           child: Form(
@@ -318,7 +327,7 @@ class _ProductAddEditAdminPageState extends State<ProductAddEditAdminPage> {
             ),
           ),
         ),
-      ),
+      ): Center(child: CircularProgressIndicator(),),
     );
   }
 }
