@@ -37,6 +37,13 @@ class ProductAdminPage extends StatelessWidget {
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
+
+                    leading: Container(
+                      height: 100,
+                      width: 100,
+                      child: Image.network(products[index]["image"], fit: BoxFit.cover,),
+                    ),
+
                     trailing: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
