@@ -8,11 +8,15 @@ class LoginAdminPage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
 
   loginEmailPassword() async {
-    UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+    try{
+      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: "mandarina@gmail.com",
         password: "3volution",
-    );
-    print(userCredential);
+      );
+      print(userCredential);
+    } on FirebaseAuthException catch (e){
+      print(e);
+    }
   }
 
   @override
