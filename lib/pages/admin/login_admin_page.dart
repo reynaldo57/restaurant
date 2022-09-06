@@ -1,11 +1,22 @@
 
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-class LoginAdminPage extends StatelessWidget {
+class LoginAdminPage extends StatefulWidget {
 
+  @override
+  State<LoginAdminPage> createState() => _LoginAdminPageState();
+}
+
+class _LoginAdminPageState extends State<LoginAdminPage> {
   final _formKey = GlobalKey<FormState>();
+
+  checkLogin() async{
+    final user = await FirebaseAuth.instance.currentUser;
+    print(user);
+  }
 
   loginEmailPassword() async {
     try{
@@ -13,9 +24,28 @@ class LoginAdminPage extends StatelessWidget {
         email: "mandarina@gmail.com",
         password: "3volution",
       );
-      print(userCredential);
+      print("DATA AUTH::: ${await userCredential.user!.getIdToken()}");
+      print("DATA AUTH::: ${userCredential.user}");
     } on FirebaseAuthException catch (e){
-      print(e);
+      if(e.code == "user-not-found"){
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              "Elcorreo electronico no existe",
+            ),
+            backgroundColor: Colors.redAccent,
+          ),
+        );
+      }else if(e.code == "wrong-password"){
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              "Contraseña  incorrecta",
+            ),
+            backgroundColor: Colors.redAccent,
+          ),
+        );
+      }
     }
   }
 
@@ -88,7 +118,25 @@ class LoginAdminPage extends StatelessWidget {
                         "Iniciar Sesion",
                       ),
                     ),
-                  )
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  Container(
+                    width: double.infinity,
+                    height: 50.0,
+                    child: ElevatedButton(
+                      onPressed: (){
+                        // if(_formKey.currentState!.validate()){
+                        //
+                        // }
+                        checkLogin();
+                      },
+                      child: Text(
+                        "Verificar",
+                      ),
+                    ),
+                  ),
 
                 ],
               ),
