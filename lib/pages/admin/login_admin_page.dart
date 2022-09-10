@@ -3,6 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:restaurant/pages/admin/home_admin_page.dart';
 
 class LoginAdminPage extends StatefulWidget {
 
@@ -13,10 +14,7 @@ class LoginAdminPage extends StatefulWidget {
 class _LoginAdminPageState extends State<LoginAdminPage> {
   final _formKey = GlobalKey<FormState>();
 
-  checkLogin() async{
-    final user = await FirebaseAuth.instance.currentUser;
-    print(user);
-  }
+
 
   loginEmailPassword() async {
     try{
@@ -24,8 +22,11 @@ class _LoginAdminPageState extends State<LoginAdminPage> {
         email: "mandarina@gmail.com",
         password: "3volution",
       );
-      print("DATA AUTH::: ${await userCredential.user!.getIdToken()}");
+      //print("DATA AUTH::: ${await userCredential.user!.getIdToken()}");
       print("DATA AUTH::: ${userCredential.user}");
+
+      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>HomeAdminPage()), (route) => false);
+
     } on FirebaseAuthException catch (e){
       if(e.code == "user-not-found"){
         ScaffoldMessenger.of(context).showSnackBar(
@@ -130,7 +131,7 @@ class _LoginAdminPageState extends State<LoginAdminPage> {
                         // if(_formKey.currentState!.validate()){
                         //
                         // }
-                        checkLogin();
+                        //checkLogin();
                       },
                       child: Text(
                         "Verificar",
