@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurant/pages/admin/home_admin_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginAdminPage extends StatefulWidget {
 
@@ -14,14 +15,20 @@ class LoginAdminPage extends StatefulWidget {
 class _LoginAdminPageState extends State<LoginAdminPage> {
   final _formKey = GlobalKey<FormState>();
 
+  signOut() async{
+    await FirebaseAuth.instance.signOut();
+  }
 
 
-  loginEmailPassword() async {
+
+  signInEmailPassword() async {
     try{
+      SharedPreferences _prefs = await SharedPreferences.getInstance();
       UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: "mandarina@gmail.com",
         password: "3volution",
       );
+      _prefs.setBool("isLogin", true);
       //print("DATA AUTH::: ${await userCredential.user!.getIdToken()}");
       print("DATA AUTH::: ${userCredential.user}");
 
@@ -113,7 +120,7 @@ class _LoginAdminPageState extends State<LoginAdminPage> {
                         // if(_formKey.currentState!.validate()){
                         //
                         // }
-                        loginEmailPassword();
+                        signInEmailPassword();
                       },
                       child: Text(
                         "Iniciar Sesion",

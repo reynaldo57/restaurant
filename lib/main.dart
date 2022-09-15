@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurant/pages/admin/home_admin_page.dart';
 import 'package:restaurant/pages/admin/login_admin_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,14 +39,23 @@ class CheckUserLogin extends StatelessWidget{
     return user!.uid;
   }
 
+  Future<bool> checkIsLogin() async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    bool res = _prefs.getBool("isLogin") ?? false;
+    return res;
+  }
+
   @override
     Widget build(BuildContext context){
       return FutureBuilder(
-          future: check(),
+          future: checkIsLogin(),
           builder: (BuildContext context, AsyncSnapshot snap){
             if(snap.hasData){
-              print(snap.data);
-              return HomeAdminPage();
+              if(snap.data){
+                return HomeAdminPage();
+              }else{
+                return LoginAdminPage();
+              }
     }
             return LoginAdminPage();
     },
