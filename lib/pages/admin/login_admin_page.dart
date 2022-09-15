@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurant/pages/admin/home_admin_page.dart';
+import 'package:restaurant/pages/admin/register_admin_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginAdminPage extends StatefulWidget {
@@ -130,21 +131,10 @@ class _LoginAdminPageState extends State<LoginAdminPage> {
                   SizedBox(
                     height: 20.0,
                   ),
-                  Container(
-                    width: double.infinity,
-                    height: 50.0,
-                    child: ElevatedButton(
-                      onPressed: (){
-                        // if(_formKey.currentState!.validate()){
-                        //
-                        // }
-                        //checkLogin();
-                      },
-                      child: Text(
-                        "Verificar",
-                      ),
-                    ),
-                  ),
+
+                  TextButton(onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>RegisterAdminPage()));
+                  }, child: Text("Registrar"),),
 
                 ],
               ),
