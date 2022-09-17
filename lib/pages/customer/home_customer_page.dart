@@ -152,7 +152,7 @@ class HomeCustomerPage extends StatelessWidget {
                 ),
 
                 FutureBuilder(
-                  future: _productFirestoreService.getProductHome(categoryId: "5MoxHYvEHSPwzdlvUaa7"),
+                  future: _productFirestoreService.getProductHome(categoryId: "pNpCI8CJ5VEeyJ0P6skH"),
                   builder: (BuildContext context, AsyncSnapshot snap){
                     if(snap.hasData){
                       List<Map<String, dynamic>> products = snap.data;
@@ -196,7 +196,7 @@ class HomeCustomerPage extends StatelessWidget {
                   height: 20.0,
                 ),
                 FutureBuilder(
-                    future: _productFirestoreService.getProductHome(categoryId: "MdlyPpT0NnDKCfBKNZeo"),
+                    future: _productFirestoreService.getProductHome(categoryId: "BpOvFLZf9xByPanWByPc"),
                     builder: (BuildContext context, AsyncSnapshot snap){
                       if(snap.hasData){
                         List<Map<String, dynamic>> products = snap.data;

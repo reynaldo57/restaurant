@@ -27,9 +27,8 @@ class _LoginAdminPageState extends State<LoginAdminPage> {
       SharedPreferences _prefs = await SharedPreferences.getInstance();
       UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: "mandarina@gmail.com",
-        password: "3volution",
+        password: "elpatriota20",
       );
-      _prefs.setBool("isLogin", true);
       //print("DATA AUTH::: ${await userCredential.user!.getIdToken()}");
       print("DATA AUTH::: ${userCredential.user}");
 
@@ -133,7 +132,7 @@ class _LoginAdminPageState extends State<LoginAdminPage> {
                   ),
 
                   TextButton(onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>RegisterAdminPage()));
+                    //Navigator.push(context, MaterialPageRoute(builder: (context)=>RegisterAdminPage()));
                   }, child: Text("Registrar"),),
 
                 ],
